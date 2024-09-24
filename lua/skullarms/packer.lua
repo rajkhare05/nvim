@@ -8,7 +8,7 @@ return require('packer').startup(function(use)
 	use 'wbthomason/packer.nvim'
 
 	use {
-		'nvim-telescope/telescope.nvim', tag = '0.1.1',
+		'nvim-telescope/telescope.nvim', tag = '0.1.x',
 		-- or                            , branch = '0.1.x',
 		requires = { {'nvim-lua/plenary.nvim'} }
 	}
@@ -57,7 +57,7 @@ return require('packer').startup(function(use)
                 -- or leave it empty to use the default settings
                 -- refer to the configuration section below
                 -- settings without a patched font or icons
-                icons = false,
+                icons = true,
                 fold_open = "v", -- icon used for open folds
                 fold_closed = ">", -- icon used for closed folds
                 indent_lines = false, -- add an indent guide below the fold icons
@@ -72,5 +72,11 @@ return require('packer').startup(function(use)
             }
         end
     }
+    use 'Exafunction/codeium.vim'
+    use {
+        "christoomey/vim-tmux-navigator",
+        lazy=false
+    }
+    use 'eandrju/cellular-automaton.nvim'
 
 end)
