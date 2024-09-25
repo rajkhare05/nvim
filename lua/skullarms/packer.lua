@@ -74,8 +74,7 @@ return require('packer').startup(function(use)
     }
     use 'Exafunction/codeium.vim'
     use {
-        "christoomey/vim-tmux-navigator",
-        lazy=false
+        "christoomey/vim-tmux-navigator"
     }
     use 'eandrju/cellular-automaton.nvim'
 
