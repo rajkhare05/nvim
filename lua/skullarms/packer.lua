@@ -90,7 +90,7 @@ return require('packer').startup(function(use)
         config = function()
             require("llm").setup({
                 url = "http://localhost:11434/api/chat",
-                model = "qwen2.5:1.5b",
+                model = "gemma3:1b",
                 api_type = "ollama",
                 temperature = 0.3,
                 top_p = 0.7,
