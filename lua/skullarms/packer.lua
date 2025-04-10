@@ -4,48 +4,48 @@
 vim.cmd [[packadd packer.nvim]]
 
 return require('packer').startup(function(use)
-	-- Packer can manage itself
-	use 'wbthomason/packer.nvim'
+    -- Packer can manage itself
+    use 'wbthomason/packer.nvim'
 
-	use {
-		'nvim-telescope/telescope.nvim', tag = '0.1.x',
-		-- or                            , branch = '0.1.x',
-		requires = { {'nvim-lua/plenary.nvim'} }
-	}
+    use {
+        'nvim-telescope/telescope.nvim', tag = '0.1.x',
+        -- or                            , branch = '0.1.x',
+        requires = { { 'nvim-lua/plenary.nvim' } }
+    }
 
-	use({
-		'rose-pine/neovim',
-		as = 'rose-pine',
-		config = function()
-			vim.cmd('colorscheme rose-pine')
-		end
-	})
+    use({
+        'rose-pine/neovim',
+        as = 'rose-pine',
+        config = function()
+            vim.cmd('colorscheme rose-pine')
+        end
+    })
 
-	use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
-	use('nvim-treesitter/playground')
-	use('theprimeagen/harpoon')
-	use('mbbill/undotree')
-	use('tpope/vim-fugitive')
-	use {
-		'VonHeikemen/lsp-zero.nvim',
-		branch = 'v1.x',
-		requires = {
-			-- LSP Support
-			{'neovim/nvim-lspconfig'},             -- Required
-			{'williamboman/mason.nvim'},           -- Optional
-			{'williamboman/mason-lspconfig.nvim'}, -- Optional
+    use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
+    use('nvim-treesitter/playground')
+    use('theprimeagen/harpoon')
+    use('mbbill/undotree')
+    use('tpope/vim-fugitive')
+    use {
+        'VonHeikemen/lsp-zero.nvim',
+        branch = 'v1.x',
+        requires = {
+            -- LSP Support
+            { 'neovim/nvim-lspconfig' },  -- Required
+            { 'williamboman/mason.nvim' }, -- Optional
+            { 'williamboman/mason-lspconfig.nvim' }, -- Optional
 
-			-- Autocompletion
-			{'hrsh7th/nvim-cmp'},         -- Required
-			{'hrsh7th/cmp-nvim-lsp'},     -- Required
-			{'hrsh7th/cmp-buffer'},       -- Optional
-			{'hrsh7th/cmp-path'},         -- Optional
-			{'saadparwaiz1/cmp_luasnip'}, -- Optional
-			{'hrsh7th/cmp-nvim-lua'},     -- Optional
+            -- Autocompletion
+            { 'hrsh7th/nvim-cmp' }, -- Required
+            { 'hrsh7th/cmp-nvim-lsp' }, -- Required
+            { 'hrsh7th/cmp-buffer' }, -- Optional
+            { 'hrsh7th/cmp-path' }, -- Optional
+            { 'saadparwaiz1/cmp_luasnip' }, -- Optional
+            { 'hrsh7th/cmp-nvim-lua' }, -- Optional
 
             -- Snippets
-            {'L3MON4D3/LuaSnip'},             -- Required
-            {'rafamadriz/friendly-snippets'}, -- Optional
+            { 'L3MON4D3/LuaSnip' },           -- Required
+            { 'rafamadriz/friendly-snippets' }, -- Optional
         }
     }
     use {
@@ -58,8 +58,8 @@ return require('packer').startup(function(use)
                 -- refer to the configuration section below
                 -- settings without a patched font or icons
                 icons = true,
-                fold_open = "v", -- icon used for open folds
-                fold_closed = ">", -- icon used for closed folds
+                fold_open = "v",      -- icon used for open folds
+                fold_closed = ">",    -- icon used for closed folds
                 indent_lines = false, -- add an indent guide below the fold icons
                 signs = {
                     -- icons / text used for a diagnostic
@@ -78,4 +78,52 @@ return require('packer').startup(function(use)
     }
     use 'eandrju/cellular-automaton.nvim'
 
+    use({
+        "Kurama622/llm.nvim",
+        requires = {
+            "nvim-lua/plenary.nvim",
+            "MunifTanjim/nui.nvim",
+        },
+
+        cmd = { "LLMSessionToggle", "LLMSelectedTextHandler", "LLMAppHandler" },
+
+        config = function()
+            require("llm").setup({
+                url = "http://localhost:11434/api/chat",
+                model = "qwen2.5:1.5b",
+                api_type = "ollama",
+                temperature = 0.3,
+                top_p = 0.7,
+                prompt = "You are a helpful assistant.",
+
+                prefix = {
+                    user = { text = ">> ", hl = "Title" },
+                    assistant = { text = "=> ", hl = "Added" },
+                },
+
+                save_session = true,
+                max_history = 15,
+                max_history_name_length = 20,
+
+                keys = {
+                    ["Input:Submit"]      = { mode = "n", key = "<cr>" },
+                    ["Input:Cancel"]      = { mode = { "n", "i" }, key = "<C-c>" },
+                    ["Input:Resend"]      = { mode = { "n", "i" }, key = "<C-r>" },
+                    ["Input:HistoryNext"] = { mode = { "n", "i" }, key = "<C-j>" },
+                    ["Input:HistoryPrev"] = { mode = { "n", "i" }, key = "<C-k>" },
+                    ["Output:Ask"]        = { mode = "n", key = "i" },
+                    ["Output:Cancel"]     = { mode = "n", key = "<C-c>" },
+                    ["Output:Resend"]     = { mode = "n", key = "<C-r>" },
+                    ["Session:Toggle"]    = { mode = "n", key = "<leader>ac" },
+                    ["Session:Close"]     = { mode = "n", key = { "<esc>", "Q" } },
+                    ["PageUp"]            = { mode = { "i", "n" }, key = "<C-b>" },
+                    ["PageDown"]          = { mode = { "i", "n" }, key = "<C-f>" },
+                    ["HalfPageUp"]        = { mode = { "i", "n" }, key = "<C-u>" },
+                    ["HalfPageDown"]      = { mode = { "i", "n" }, key = "<C-d>" },
+                    ["JumpToTop"]         = { mode = "n", key = "gg" },
+                    ["JumpToBottom"]      = { mode = "n", key = "G" },
+                },
+            })
+        end,
+    })
 end)
