@@ -48,15 +48,12 @@ return require('packer').startup(function(use)
             { 'rafamadriz/friendly-snippets' }, -- Optional
         }
     }
+    
     use {
         "folke/trouble.nvim",
         requires = "nvim-tree/nvim-web-devicons",
         config = function()
             require("trouble").setup {
-                -- your configuration comes here
-                -- or leave it empty to use the default settings
-                -- refer to the configuration section below
-                -- settings without a patched font or icons
                 icons = true,
                 fold_open = "v",      -- icon used for open folds
                 fold_closed = ">",    -- icon used for closed folds
@@ -72,13 +69,14 @@ return require('packer').startup(function(use)
             }
         end
     }
-    -- use 'Exafunction/codeium.vim'
+
     use {
         "christoomey/vim-tmux-navigator"
     }
+
     use 'eandrju/cellular-automaton.nvim'
 
-    use({
+    use {
         "Kurama622/llm.nvim",
         requires = {
             "nvim-lua/plenary.nvim",
@@ -125,5 +123,6 @@ return require('packer').startup(function(use)
                 },
             })
         end,
-    })
+    }
 end)
+
