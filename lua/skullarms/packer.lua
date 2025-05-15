@@ -28,12 +28,12 @@ return require('packer').startup(function(use)
     use('tpope/vim-fugitive')
     use {
         'VonHeikemen/lsp-zero.nvim',
-        branch = 'v1.x',
+        branch = 'v4.x',
         requires = {
             -- LSP Support
             { 'neovim/nvim-lspconfig' },  -- Required
-            { 'williamboman/mason.nvim' }, -- Optional
-            { 'williamboman/mason-lspconfig.nvim' }, -- Optional
+            { 'mason-org/mason.nvim' }, -- Optional
+            { 'mason-org/mason-lspconfig.nvim' }, -- Optional
 
             -- Autocompletion
             { 'hrsh7th/nvim-cmp' }, -- Required
@@ -48,7 +48,7 @@ return require('packer').startup(function(use)
             { 'rafamadriz/friendly-snippets' }, -- Optional
         }
     }
-    
+
     use {
         "folke/trouble.nvim",
         requires = "nvim-tree/nvim-web-devicons",
