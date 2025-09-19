@@ -16,6 +16,11 @@ local cmp = require('cmp')
 require('lsp-zero').cmp_action()
 
 cmp.setup({
+    snippets = {
+        expand = function(args)
+            require('luasnip').lsp_expand(args.body)
+        end
+    },
     mapping = cmp.mapping.preset.insert({
         ['<C-p>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
         ['<C-n>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
@@ -24,6 +29,10 @@ cmp.setup({
         ['<Tab>'] = nil,
         ['<S-Tab>'] = nil,
     }),
+    sources = {
+        { name = 'nvim_lsp' },
+        { name = 'luasnip' },
+    },
 })
 
 lsp.on_attach(function(_, bufnr)
