@@ -26,28 +26,23 @@ return require('packer').startup(function(use)
     use('theprimeagen/harpoon')
     use('mbbill/undotree')
     use('tpope/vim-fugitive')
-    use {
-        'VonHeikemen/lsp-zero.nvim',
-        branch = 'v4.x',
-        requires = {
-            -- LSP Support
-            { 'neovim/nvim-lspconfig' },  -- Required
-            { 'mason-org/mason.nvim' }, -- Optional
-            { 'mason-org/mason-lspconfig.nvim' }, -- Optional
 
-            -- Autocompletion
-            { 'hrsh7th/nvim-cmp' }, -- Required
-            { 'hrsh7th/cmp-nvim-lsp' }, -- Required
-            { 'hrsh7th/cmp-buffer' }, -- Optional
-            { 'hrsh7th/cmp-path' }, -- Optional
-            { 'saadparwaiz1/cmp_luasnip' }, -- Optional
-            { 'hrsh7th/cmp-nvim-lua' }, -- Optional
+    -- LSP Support
+    use('neovim/nvim-lspconfig')
+    use('mason-org/mason.nvim')
+    use('mason-org/mason-lspconfig.nvim')
 
-            -- Snippets
-            { 'L3MON4D3/LuaSnip' },           -- Required
-            { 'rafamadriz/friendly-snippets' }, -- Optional
-        }
-    }
+    -- Autocompletion
+    use('hrsh7th/nvim-cmp')
+    use('hrsh7th/cmp-nvim-lsp')
+    use('hrsh7th/cmp-buffer')
+    use('hrsh7th/cmp-path')
+    use('saadparwaiz1/cmp_luasnip')
+    use('hrsh7th/cmp-nvim-lua')
+
+    -- Snippets
+    use('L3MON4D3/LuaSnip')
+    use('rafamadriz/friendly-snippets')
 
     use {
         "folke/trouble.nvim",
