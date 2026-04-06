@@ -22,7 +22,6 @@ return require('packer').startup(function(use)
     })
 
     use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
-    use('nvim-treesitter/playground')
     use('theprimeagen/harpoon')
     use('mbbill/undotree')
     use('tpope/vim-fugitive')
@@ -71,53 +70,5 @@ return require('packer').startup(function(use)
 
     use 'eandrju/cellular-automaton.nvim'
 
-    use {
-        "Kurama622/llm.nvim",
-        requires = {
-            "nvim-lua/plenary.nvim",
-            "MunifTanjim/nui.nvim",
-        },
-
-        cmd = { "LLMSessionToggle", "LLMSelectedTextHandler", "LLMAppHandler" },
-
-        config = function()
-            require("llm").setup({
-                url = "http://localhost:11434/api/chat",
-                model = "gemma3:1b",
-                api_type = "ollama",
-                temperature = 0.3,
-                top_p = 0.7,
-                prompt = "You are a helpful assistant.",
-
-                prefix = {
-                    user = { text = ">> ", hl = "Title" },
-                    assistant = { text = "=> ", hl = "Added" },
-                },
-
-                save_session = true,
-                max_history = 15,
-                max_history_name_length = 20,
-
-                keys = {
-                    ["Input:Submit"]      = { mode = "n", key = "<cr>" },
-                    ["Input:Cancel"]      = { mode = { "n", "i" }, key = "<C-c>" },
-                    ["Input:Resend"]      = { mode = { "n", "i" }, key = "<C-r>" },
-                    ["Input:HistoryNext"] = { mode = { "n", "i" }, key = "<C-j>" },
-                    ["Input:HistoryPrev"] = { mode = { "n", "i" }, key = "<C-k>" },
-                    ["Output:Ask"]        = { mode = "n", key = "i" },
-                    ["Output:Cancel"]     = { mode = "n", key = "<C-c>" },
-                    ["Output:Resend"]     = { mode = "n", key = "<C-r>" },
-                    ["Session:Toggle"]    = { mode = "n", key = "<leader>ac" },
-                    ["Session:Close"]     = { mode = "n", key = { "<esc>", "Q" } },
-                    ["PageUp"]            = { mode = { "i", "n" }, key = "<C-b>" },
-                    ["PageDown"]          = { mode = { "i", "n" }, key = "<C-f>" },
-                    ["HalfPageUp"]        = { mode = { "i", "n" }, key = "<C-u>" },
-                    ["HalfPageDown"]      = { mode = { "i", "n" }, key = "<C-d>" },
-                    ["JumpToTop"]         = { mode = "n", key = "gg" },
-                    ["JumpToBottom"]      = { mode = "n", key = "G" },
-                },
-            })
-        end,
-    }
 end)
 
