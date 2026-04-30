@@ -1,4 +1,13 @@
+local telescope = require('telescope')
 local builtin = require('telescope.builtin')
+
+telescope.setup({
+    defaults = {
+        preview = {
+            treesitter = false,
+        }
+    },
+})
 
 vim.keymap.set('n', '<leader>pf', function()
     builtin.find_files({
